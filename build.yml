@@ -12,8 +12,19 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
-      - run: mvn -B clean package
+      - name: Locate project (pom.xml)
+        run: |
+          POM=$(find . -name pom.xml -not -path "./.git/*" | head -n1)
+          if [ -z "$POM" ]; then echo "pom.xml not found"; exit 1; fi
+          echo "PROJECT_DIR=$(dirname "$POM")" >> "$GITHUB_ENV"
+          find "$(dirname "$POM")" -path "*/.git" -prune -o -type f -print
+      - name: Build with Maven
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: mvn -B clean package
+      - name: Show jar contents
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: unzip -l target/Sentinel.jar
       - uses: actions/upload-artifact@v4
         with:
-          name: FakeCrowd-jar
-          path: target/FakeCrowd.jar
+          name: Sentinel-jar
+          path: ${{ env.PROJECT_DIR }}/target/Sentinel.jar
