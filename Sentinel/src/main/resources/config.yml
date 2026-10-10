@@ -1,0 +1,78 @@
+# ===== Sentinel =====
+punishment:
+  # Скільки VL (балів порушень) по одній перевірці до покарання
+  max-vl: 25
+  # Перевірки, які лише сповіщають адмінів (без автопокарання)
+  alert-only: [Xray]
+  # Команди покарання (виконуються від консолі)
+  commands:
+    - "kick %player% Sentinel: підозра у використанні читів (%check%)"
+    # - "ban %player% Читерство (%check%)"
+
+alerts:
+  console: true
+
+checks:
+  speed:
+    enabled: true
+    tolerance: 1.10
+  fly:
+    enabled: true
+  highjump:
+    enabled: true
+    max-dy: 0.85
+  nofall:
+    enabled: true
+  jesus:
+    enabled: true
+  phase:
+    enabled: true
+  timer:
+    enabled: true
+    max-moves-per-second: 26
+  invmove:
+    enabled: true
+  inventory-clicks:
+    enabled: true
+    max-per-second: 30
+  reach:
+    enabled: true
+    max: 3.8
+  killaura-angle:
+    enabled: true
+    max-angle: 75
+  hit-through-wall:
+    enabled: true
+  multiaura:
+    enabled: true
+  autoclicker:
+    enabled: true
+    max-cps: 22
+  block-reach:
+    enabled: true
+    max: 6.5
+  nuker:
+    enabled: true
+    max-per-second: 10
+  block-direction:
+    enabled: true
+  fastplace:
+    enabled: true
+    max-per-second: 12
+  scaffold:
+    enabled: true
+  xray:
+    enabled: true
+    window: 100
+    max-rare-ratio: 0.08
+    max-ore-ratio: 0.30
+
+report:
+  cooldown-seconds: 60
+  # До 5 причин. Для ОСТАННЬОЇ причини коментар обов'язковий.
+  reasons:
+    - "Читерство"
+    - "Образи / токсичність"
+    - "Спам / реклама"
+    - "Гріфінг"
+    - "Інше"

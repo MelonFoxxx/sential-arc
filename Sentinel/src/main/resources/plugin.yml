@@ -1,0 +1,41 @@
+name: Sentinel
+version: 1.0.0
+main: dev.sentinel.Sentinel
+api-version: '1.21'
+description: Anti-cheat, Anti-Xray and report system
+softdepend: [LuckPerms]
+
+commands:
+  report:
+    description: Подати жалобу на гравця
+    usage: /report [нік]
+    permission: sentinel.report
+  reports:
+    description: Переглянути жалоби (для адмінів)
+    usage: /reports
+    permission: reports.view
+  sentinel:
+    description: Керування Sentinel
+    usage: /sentinel <reload|vl|reset> [гравець]
+    aliases: [snt]
+    permission: sentinel.admin
+
+permissions:
+  sentinel.report:
+    description: Дозволяє користуватись /report
+    default: true
+  reports.view:
+    description: Перегляд жалоб (/reports) і телепорт до порушників
+    default: op
+  reports.delete:
+    description: Видалення жалоб з меню (Shift+ПКМ)
+    default: op
+  sentinel.alerts:
+    description: Отримувати сповіщення античіта
+    default: op
+  sentinel.bypass:
+    description: Обхід усіх перевірок античіта
+    default: false
+  sentinel.admin:
+    description: Команда /sentinel
+    default: op
